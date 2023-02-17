@@ -1,0 +1,96 @@
+1.
+
+li $v0, 1 # service 1 is print integer
+ li $a0, 0x307 # the interger to be printed is 0x307
+ syscall # HĐH xem giá trị của thanh ghi v0 để xác định chương trình muốn làm gì// ở đây v_0 = 1 tương ứng dịch vụ print_int
+
+2.
+
+.data
+Message: .asciiz "So nguyen la " # khai báo Message có giá trị khởi tạo là "So nguyen la"
+.text
+ li $v0, 56 # thanh ghi V_0 được gán giá trị 56 tương ứng dịch vụ hiển thị thông tin cho người dùng ở nơi chứa địa chỉ a_0 đang có và in a_1 sau chuỗi đầu tiên kết thúc
+ la $a0, Message # khởi tạo thanh ghi a_0 với địa chỉ của Message 
+ li $a1, 0x307 # the interger to be printed is 0x307
+ syscall # execute
+3.
+
+.data
+Message: .asciiz "Bomon \nKy thuat May tinh" # khỏi tạo giá trị cho Massage
+.text
+ li $v0, 4 # tương ứng với dịch vụ in chuỗi từ a_0
+ la $a0, Message # a_0 được gán địa chỉ của Message
+ syscall
+4.
+
+.data
+Message: .asciiz "Bomon \nKy thuat May tinh:" # khởi tạo giá trị cho Message
+Address: .asciiz " phong 502, B1"             # khởi tạo giá trị cho Address
+.text
+ li $v0, 59      # dịch vụ in chuỗi từ địa chỉ a_0 sau khi kết thúc a_0 thì hiển thị giá trị của địa chỉ a_1
+ la $a0, Message
+ la $a1, Address 
+ syscall 
+5.
+
+li $v0, 5 #đọc số
+syscall 
+6.
+
+.data
+Message: .asciiz "Nhap so nguyen:" # khởi tạo giá trị cho Message
+.text
+ li $v0, 51        # v_0 = 51 hiển thị thông báo từ địa chỉ a_0 cho người dùng và nhận dữ liệu input từ người dùng 
+ la $a0, Message   # gán địa chỉ a_0 là địa chỉ Message
+ syscall 
+7.
+
+.data
+Message: .space 100 # Buffer 100 byte chua chuoi ki tu can (.space cấp phát bộ nhớ)
+.text
+ li $v0, 8 # đọc chuỗi
+ la $a0, Message # gán địa chị Message cho a_0
+ li $a1, 100   # số kí tự tối đa để đọc
+ syscall
+8.
+
+.data
+Message: .asciiz "Ho va ten sinh vien:" # khởi tạo giá trị cho Message
+string: .space 200                     # cấp phát 100 byte bộ nhớ cho string
+.text
+ li $v0, 54 # dịch vụ cung cấp đọc chuỗi từ địa chỉ a_0 hiển thị thông báo , nhận dữ liệu input từ người dùng vào thành ghi a_1 
+ la $a0, Message # địa chỉ nơi chứa chuỗi kết thúc
+ la $a1, string # địa chỉ bộ đệm đầu vào
+la $a2,200 # ký tự tối đa đc đọc
+ syscall 
+9.
+
+li $v0, 11 # dịch vụ tương ứng là in 1 ký tự từ thanh ghi a_0
+ li $a0, 'k'
+ syscall 
+10.
+
+li $v0, 12 # đọc 1 ký tự người dùng vào v_0
+ syscall 
+11.
+
+.data
+Message: .asciiz "Ban la SV Ky thuat May tinh?"
+.text
+ li $v0, 50 # đọc chuỗi từ địa chỉ a_0 và hiển thị thông báo yes(a_0=0), no(a_0 = 1) ,cancel(a_0 = 2)
+ la $a0, Message # gán địa chỉ Message cho a0
+ syscall
+12.
+
+.data
+Message: .asciiz "Xin chao"
+.text
+ li $v0, 55
+ la $a0, Message
+ syscall 
+13.
+li $v0, 33 
+ li $a0, 42 #pitch
+ li $a1, 2000 #time
+ li $a2, 0 #musical instrusment
+ li $a3, 212 #volume
