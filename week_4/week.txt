@@ -1,0 +1,36 @@
+Assignment 1:
+
+add $s1,$zero,-255
+add $s2,$zero,-2
+.text
+start: 
+li $t0,0 		// khoi tao thanh ghi t0 voi gia tri 0
+addu $s3,$s1,$s2	// s3= s2+s1
+xor $t1,$s1,$s2		//kiem tra s1 va s2 'cung dau' hay 'khac dau'
+bltz $t1, EXIT		//chuyen den exit neu t1 < 0
+slt $t2,$s3,$s1		// so sanh s3 < s1
+bltz $s1,NEGTIVE	// chuyen den NEGTIVE khi s1 < 0
+beq $t2,$zero,EXIT	// chuyen den exit neu t2 == 0	
+j OVERFLOW
+NEGTIVE:
+bne $t2,$zero,EXIT	// chuyen den exit neu t2 !=0 
+OVERFLOW:		
+li $t0,1		// t0 =1
+EXIT:
+
+Assignment 2:
+
+.text
+li $s0, 0x12345678
+andi $t0,$s0,0X00ffffff
+andi $t1,$s0,0xfff00000
+Assignment 3:
+
+.text
+li $s0,1
+sll $s1,$s0,2
+
+Assignment 4:
+
+Assignment 5:
+
